@@ -1,0 +1,31 @@
+body {
+    background: rgb(99, 39, 120)
+}
+.labels {
+    font-size: 11px
+}
+/* .card{
+  
+  width: 55%;
+  height: 100%;
+  margin: auto;
+    background: rgb(74, 63, 28);
+    background: linear-gradient(90deg,rgb(28, 172, 216)0%,rgb(217, 213, 220)100%);
+} */
+
+.card{
+    width: 50%;
+    padding: 15px;
+    margin:auto;
+    background: rgb(174, 212, 241);
+    background: linear-gradient(90deg, rgb(10, 126, 215) 0%, rrgb(107, 50, 231)100%);
+}
+
+img{
+    height: 80%;
+    width: 80%;
+}
+.row{
+    background: rgb(174, 212, 241);
+    background: linear-gradient(90deg, rgb(174, 212, 241) 0%, rgb(203, 183, 245) 100%);
+}
