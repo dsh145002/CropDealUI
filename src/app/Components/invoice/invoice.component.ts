@@ -30,15 +30,15 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+  role = localStorage.getItem('role')
   getInvoices(){
-    if(localStorage.getItem('role') == 'Farmer'){
+    if(this.role == 'Farmer'){
         this.http.get('https://localhost:44346/api/Invoice/farmerInvoices/'+localStorage.getItem('userId')).subscribe((res:any)=>{
           this.invoices = res;
           console.log(this.invoices)
         })
     }
-    else if(localStorage.getItem('role') == 'Farmer'){
+    else if(this.role == 'Dealer'){
       this.http.get('https://localhost:44346/api/Invoice/dealerInvoices/'+localStorage.getItem('userId')).subscribe((res:any)=>{
         this.invoices = res;
         console.log(this.invoices)

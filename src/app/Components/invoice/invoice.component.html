@@ -39,11 +39,17 @@
                         <div class="col-lg-6">
                             <!-- col-lg-6 start here -->
                             <div class="invoice-from">
-                              <ul class="list-unstyled text-left">
+                              <ul *ngIf="role=='Farmer'" class="list-unstyled text-left">
                                 <br/>
                                 <br/>
-                                  <li>Dealer Accouny Number</li>
-                                  <li> {{item.dealerAccNumber}}</li>
+                                  <li>Dealer Account Number(Paid By)</li>
+                                  <li>{{item.dealerAccNumber}}</li>
+                              </ul>
+                              <ul *ngIf="role=='Dealer'" class="list-unstyled text-left">
+                                <br/>
+                                <br/>
+                                  <li>Farmer Account Number(Paid To)</li>
+                                  <li>{{item.farmerAccNumber}}</li>
                               </ul>
                           </div>
                             
@@ -52,10 +58,15 @@
                         <div class="col-lg-6">
                             <!-- col-lg-6 start here -->
                             <div class="invoice-from">
-                                <ul class="list-unstyled text-right">
+                                <ul *ngIf="role=='Farmer'" class="list-unstyled text-right">
                                   <li><h4><strong>Invoice To</strong></h4></li>
-                                  <li>Farmer Account Number</li>
-                                  <li> {{item.dealerAccNumber}}</li>
+                                  <li>Farmer Account Number(Paid)</li>
+                                  <li>{{item.farmerAccNumber}}</li>
+                                </ul>
+                                <ul *ngIf="role=='Dealer'" class="list-unstyled text-right">
+                                    <li><h4><strong>Invoice To</strong></h4></li>
+                                    <li>Your Account Number(Paid By)</li>
+                                    <li>{{item.dealerAccNumber}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -125,6 +136,5 @@
 
   
 <div class="mx-4">
-    
-  <button class="button"  id="print" (click)= "generatePDF();" type="button">Download All Invoices</button> 
+    <button class="button"  id="print" (click)= "generatePDF();" type="button">Download All Invoices</button> 
   </div>

@@ -10,6 +10,7 @@ import { RegisterUser } from 'src/app/Model/RegisterUser';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  
   profileForm!: FormGroup;
   submitted:boolean = false;
   roles = [ 'Farmer', 'Dealer'];

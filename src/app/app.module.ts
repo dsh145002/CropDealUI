@@ -17,6 +17,22 @@ import { AuthInterceptor } from './token-interceptor.service';
 import { AuthGuard } from 'src/auth.guard';
 import { HasRoleGuard } from './has-role.guard';
 import { InvoiceComponent } from './Components/invoice/invoice.component';
+import { FarmerHomeComponent } from './Components/farmer-home/farmer-home.component';
+import { BuyerhomepageComponent } from './Components/buyerhomepage/buyerhomepage.component';
+import { ViewCropFarmerComponent } from './Components/view-crop-farmer/view-crop-farmer.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {  MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider'
+import { UserDisplayComponent } from './Components/Users Display/userDisplay.component';
+import { CropService } from './crop.service';
+import { CropDetailsComponent } from './Components/crop-details/crop-details.component';
+import { EditUserComponent } from './Components/edit-profile/editUser.component';
+import { EditCropComponent } from './Components/edit-crop/edit-crop.component';
+
 
 @NgModule({
   declarations: [
@@ -28,14 +44,27 @@ import { InvoiceComponent } from './Components/invoice/invoice.component';
     FooterComponent,
     NavbarComponent,
     AddCropComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    FarmerHomeComponent,
+    BuyerhomepageComponent,
+    ViewCropFarmerComponent,
+    UserDisplayComponent,
+    AddCropComponent ,
+    CropDetailsComponent,
+    EditUserComponent,
+    EditCropComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-   
+    MatSidenavModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatToolbarModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

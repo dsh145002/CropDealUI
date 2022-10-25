@@ -16,6 +16,10 @@
     padding:40px 60px 40px;
     position:relative;
     margin: auto;
+    margin-top: 5%;
     background: rgb(174, 212, 241);
     background: linear-gradient(90deg, rgb(174, 212, 241) 0%, rgb(203, 183, 245) 100%);
+}
+.container{
+    height: 71%;
 }

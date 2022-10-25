@@ -1,5 +1,5 @@
 body {
-    background: rgb(99, 39, 120)
+    background: rgb(217, 203, 222)
 }
 .labels {
     font-size: 11px
@@ -18,7 +18,7 @@ body {
     padding: 15px;
     margin:auto;
     background: rgb(174, 212, 241);
-    background: linear-gradient(90deg, rgb(10, 126, 215) 0%, rrgb(107, 50, 231)100%);
+    background: linear-gradient(90deg, rgb(196, 224, 245) 0%, rgb(196, 210, 247)100%);
 }
 
 img{
@@ -26,6 +26,9 @@ img{
     width: 80%;
 }
 .row{
-    background: rgb(174, 212, 241);
-    background: linear-gradient(90deg, rgb(174, 212, 241) 0%, rgb(203, 183, 245) 100%);
+
+    background-color: aquamarine;
+}
+.outer-div{
+    height: 80%;
 }

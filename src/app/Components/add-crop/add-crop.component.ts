@@ -54,7 +54,7 @@ export class AddCropComponent implements OnInit {
     console.log(response); 
     this.toast.success({detail: "Success Message", summary: "Crop added successfully", duration: 5000});
     this.addForm.reset();
-    //this.router.navigate('farmerHome')
+    this.router.navigate(['farmerhome'])
     }, error =>{
       if(error.status==401){
         alert('Unauthorized')

@@ -40,6 +40,21 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role',this.result.role)
         localStorage.setItem('userId',this.result.userId)
         localStorage.setItem('token',this.result.token)
+        
+        if(this.result.role == 'Farmer'){
+          alert('Logged in Successfully')
+          this.router.navigate(['/farmerhome'])
+        }else if(this.result.role == 'Dealer'){
+          alert('Logged in Successfully')
+          this.router.navigate(['/dealerhome'])
+        }
+      },
+      err=>{
+        if(err.status==401){
+          alert('Wrong Password')
+        }else if(err.status==404){
+          alert('User not Found!! Register or check Email again')
+        }
       });
 
     }
