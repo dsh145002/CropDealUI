@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getAllCrop } from 'src/app/Model/getAllCrop.model';
 import { CropService } from 'src/app/crop.service';
 import { Payment } from 'src/app/Model/Payment';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-crop-details',
@@ -10,53 +11,41 @@ import { Payment } from 'src/app/Model/Payment';
 })
 export class CropDetailsComponent implements OnInit {
 
-  cropForm: getAllCrop[] =[];
-  crop: getAllCrop ={
-    CropId: 0, 
-    CropTypeId: 0, 
-    FarmerId: 0,  
-    User: '',  
-    CropName: '',  
-    Location: '',
-    QtyAvailable: 0,
-    ExpectedPrice: 0,
-    CropType: '',
-    Invoices: ''
-  }
-
-  constructor(private cropService: CropService) { }
+  id!:any
+  
+  constructor(private cropService: CropService,private _actRoute: ActivatedRoute,private router: Router) {
+    this.id = this._actRoute.snapshot.paramMap.get("id");
+    this.GetCropById(this.id);
+   }
 
   ngOnInit(): void {
-    //this.getAllCrops();
-    this.GetCropById('1005');
+    
   }
+  
   pay = new Payment()
+
+  singleCrop!:any
+  GetCropById(id:any){
+    this.cropService.viewCropById(id).subscribe(res=>{
+      this.singleCrop= res.value
+      console.log(this.singleCrop)
+    })
+  }
+
   onPay(){
-    this.pay.cropId=this.singleCrop.value.cropId;
-    this.pay.farmerId=this.singleCrop.value.farmerId;
+    this.pay.cropId=Number(this.id);
+    this.pay.farmerId= this.singleCrop.farmerId
     this.pay.dealerId= Number(localStorage.getItem('userId'))
+    console.log(this.pay)
     this.cropService.postInvoice(this.pay).subscribe(res=>{
       console.log(res)
-      
+      alert('Payment Successful')
+      this.router.navigate(['/paysuccess'])
     },err=>{
       console.log(err)
     })
   }
-  // getAllCrops(){
-  //   this.cropService.getAllCrops()
-  //   .subscribe(
-  //     response =>{
-  //       this.cropForm = response;
-  //       console.log(response);
-  //     }
-  //   )
-  // }
-  singleCrop!:any
-  GetCropById(id:any){
-    this.cropService.getCropById(id).subscribe(res=>{
-      this.singleCrop= res
-      console.log(this.singleCrop.value.cropName)
-    })
-  }
+  
+  
 
 }

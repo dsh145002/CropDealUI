@@ -21,9 +21,7 @@ export class CropService {
 
   viewCropById(id: number){
     return this.http.get<any>(this.baseUrl+'viewCrop/'+id);
-    //.pipe(map((res:any)=>{
-    //  return res;
-    //}))
+
   }
 
   getAllCrops(): Observable<getAllCrop[]>{

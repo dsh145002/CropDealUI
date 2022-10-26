@@ -3,17 +3,20 @@ import jsPDF from 'jspdf';
 import html2canvas  from 'html2canvas';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { ThisReceiver } from '@angular/compiler';
 
 @Component({
-  selector: 'app-invoice',
-  templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css']
+  selector: 'app-report',
+  templateUrl: './report.component.html',
+  styleUrls: ['./report.component.css']
 })
-export class InvoiceComponent implements OnInit {
+export class ReportComponent implements OnInit {
   
-  id!:string|null
-  role!:string|null
+  public invoicelist:any = [
+    {id: 1, text: 'Sentence 1'},
+    {id: 2, text: 'Sentence 2'},
+    {id: 3, text: 'Sentence 3'},
+    {id: 4, text: 'Sentenc4 '},
+];
   userid:any;
   @ViewChild('invoice') invoiceElement!: ElementRef;
   log=1;
@@ -23,23 +26,17 @@ export class InvoiceComponent implements OnInit {
   invoices!:any[]
 
   constructor(private http:HttpClient,private active:ActivatedRoute) { 
-    if(localStorage.getItem('role')=='Admin'){
-      console.log('inside admin')
-      this.role = this.active.snapshot.paramMap.get('role')
-      this.id = this.active.snapshot.paramMap.get('id')
-    }else{
-      this.role=localStorage.getItem('role')
-      this.id=localStorage.getItem('userId')
-    }
     this.getInvoices()
   }
- 
-  ngOnInit(): void {
-
-  }
- 
-  getInvoices(){
     
+  id = this.active.snapshot.paramMap.get("id");
+  role = this.active.snapshot.paramMap.get("role");
+  ngOnInit(): void {
+  }
+  
+
+
+  getInvoices(){
     if(this.role == 'Farmer'){
         this.http.get('https://localhost:44346/api/Invoice/farmerInvoices/'+this.id).subscribe((res:any)=>{
           this.invoices = res;

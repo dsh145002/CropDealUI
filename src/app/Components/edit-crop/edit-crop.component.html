@@ -38,17 +38,17 @@
                     
                         <div class="form-group mb-3">
                             <label class="form-label">Quantity Available</label>
-                            <input type="number" formControlName="qtyAvailable" class="form-control">
-                            <div *ngIf="submitted && ngForm.controls['qtyAvailable'].errors" class="error">
-                                <div class="text-danger" *ngIf="ngForm.controls['qtyAvailable'].errors['required']">*quantity available is required</div>
+                            <input type="number" formControlName="CropQtyAvailable" class="form-control">
+                            <div *ngIf="submitted && ngForm.controls['CropQtyAvailable'].errors" class="error">
+                                <div class="text-danger" *ngIf="ngForm.controls['CropQtyAvailable'].errors['required']">*quantity available is required</div>
                               </div>
                         </div>
                     
                         <div class="form-group mb-4">
                             <label class="form-label">Expected Price</label>
-                            <input type="number" formControlName="expectedPrice" class="form-control">                            
-                            <div *ngIf="submitted && ngForm.controls['expectedPrice'].errors" class="error">
-                                <div class="text-danger" *ngIf="ngForm.controls['expectedPrice'].errors['required']">*expected price is required</div>
+                            <input type="number" formControlName="CropExpectedPrice" class="form-control">                            
+                            <div *ngIf="submitted && ngForm.controls['CropExpectedPrice'].errors" class="error">
+                                <div class="text-danger" *ngIf="ngForm.controls['CropExpectedPrice'].errors['required']">*expected price is required</div>
                               </div>
                         </div>                        
                         

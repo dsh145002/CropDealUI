@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CropService } from 'src/app/crop.service';
 
 @Component({
   selector: 'app-buyerhomepage',
@@ -10,6 +11,7 @@ export class BuyerhomepageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

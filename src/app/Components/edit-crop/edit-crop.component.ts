@@ -44,8 +44,8 @@ export class EditCropComponent implements OnInit {
         cropName: [data.value.cropName, Validators.required],
         FarmerId: [localStorage.getItem('userId')],
         cropLocation: [data.value.cropLocation, Validators.required],
-        qtyAvailable: [data.value.cropQtyAvailable, Validators.required],
-        expectedPrice: [data.value.cropExpectedPrice, Validators.required]
+        CropQtyAvailable: [data.value.cropQtyAvailable, Validators.required],
+        CropExpectedPrice: [data.value.cropExpectedPrice, Validators.required]
       });
     });
     
@@ -59,7 +59,7 @@ export class EditCropComponent implements OnInit {
     console.log(this.ngForm.value)
     this.api.updateCrop(this.id,this.ngForm.value)
     .subscribe(data =>{
-      console.log(data);
+      console.log(data)
       this.toast.success({detail: "Success Message", summary: "Crop updated successfully", duration: 5000});
       this.ngForm.reset();
     }, err =>{

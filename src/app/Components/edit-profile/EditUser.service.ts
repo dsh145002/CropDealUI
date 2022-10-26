@@ -8,10 +8,10 @@ import { UserPageDto } from './UserPageDto';
 })
 export class EditUserService {
 
-  private baseurl = "Give the URL";
+  private baseurl = "https://localhost:44346/";
   constructor(private http: HttpClient) { }
 
-  public edituser(user : UserPageDto, id : number) : Observable<any>{
-    return this.http.put<any>(this.baseurl, user);
+  public edituser(user : UserPageDto, id : number){
+    return this.http.put(this.baseurl+'api/User/updateUser/'+id, user);
   }
 }

@@ -7,9 +7,8 @@ import { HomeComponent } from './home/home.component';
 import {  HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
-import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { AddCropComponent } from './Components/add-crop/add-crop.component';
@@ -25,13 +24,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {  MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider'
+import { MatIconModule} from '@angular/material/icon';
+import { MatDividerModule} from '@angular/material/divider'
 import { UserDisplayComponent } from './Components/Users Display/userDisplay.component';
-import { CropService } from './crop.service';
 import { CropDetailsComponent } from './Components/crop-details/crop-details.component';
 import { EditUserComponent } from './Components/edit-profile/editUser.component';
 import { EditCropComponent } from './Components/edit-crop/edit-crop.component';
+import { ViewCropDealerComponent } from './Components/view-crop-dealer/view-crop-dealer.component';
+import { ReportPageComponent } from './Components/ReportPage/reportpage.component';
+import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-successfull.component';
 
 
 @NgModule({
@@ -52,7 +53,10 @@ import { EditCropComponent } from './Components/edit-crop/edit-crop.component';
     AddCropComponent ,
     CropDetailsComponent,
     EditUserComponent,
-    EditCropComponent
+    EditCropComponent,
+    ViewCropDealerComponent,
+    ReportPageComponent,
+    PaymentSuccessfullComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,7 @@ import { EditCropComponent } from './Components/edit-crop/edit-crop.component';
     MatDividerModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-
+    MatIconModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

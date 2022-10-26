@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EditUserService } from './EditUser.service';
 import { UserPageDto } from './UserPageDto';
+import { UpdateUserDto } from 'src/app/Model/UpdateUserDto';
 
 @Component({
   selector: 'app-profile',
@@ -24,14 +25,12 @@ export class EditUserComponent implements OnInit {
         this.EdituserForm = this.formBuilder.group({
        
           email:  [res.value.email, [Validators.required,Validators.email]],
-          phoneNo:  [res.value.phone,  [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      
-          address:  [res.value.address.line, Validators.required],
+          phone:  [res.value.phone,  [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+          line:  [res.value.address.line, Validators.required],
           city:  [res.value.address.city, Validators.required],
           state:  [res.value.address.state, Validators.required],
-      
           accountNumber:  [ res.value.account.accountNumber, Validators.required],
-          ifscCode:  [res.value.account.bankName, Validators.required],
+          IFSC:  [res.value.account.bankName, Validators.required],
           bankName: [ res.value.account.ifscCode, Validators.required],
     
     }); 
@@ -39,11 +38,9 @@ export class EditUserComponent implements OnInit {
      }
 
   crop!:any
-  ngOnInit(): void {   
+  ngOnInit(): void {  
 
-   
-    
-}
+  }
   
   userId = Number(localStorage.getItem('userId'))
   get f() { return this.EdituserForm.controls; }
@@ -53,26 +50,27 @@ export class EditUserComponent implements OnInit {
   SaveChanges(){
     console.log('Clicked')
     this.submitted = true;
-    if(this.EdituserForm.invalid){
-      return;
-    }
-    this.userdto.Email=this.EdituserForm.controls['email'].value;
-    this.userdto.Phone=this.EdituserForm.controls['phoneNo'].value;
+    // if(this.EdituserForm.invalid){
+    //   return;
+    // }
+    // this.userdto.Email=this.EdituserForm.controls['email'].value;
+    // this.userdto.Phone=this.EdituserForm.controls['phoneNo'].value;
 
-    this.userdto.Line=this.EdituserForm.controls['address'].value;
-    this.userdto.City=this.EdituserForm.controls['city'].value;
-    this.userdto.State=this.EdituserForm.controls['state'].value;
+    // this.userdto.Line=this.EdituserForm.controls['address'].value;
+    // this.userdto.City=this.EdituserForm.controls['city'].value;
+    // this.userdto.State=this.EdituserForm.controls['state'].value;
 
-    this.userdto.AccountNumber=this.EdituserForm.controls['accountNumber'].value;
-    this.userdto.IFSCCode =this.EdituserForm.controls['ifscCode'].value;
-    this.userdto.BankName=this.EdituserForm.controls['bankName'].value;
+    // this.userdto.AccountNumber=this.EdituserForm.controls['accountNumber'].value;
+    // this.userdto.IFSCCode =this.EdituserForm.controls['ifscCode'].value;
+    // this.userdto.BankName=this.EdituserForm.controls['bankName'].value;
 
-    console.log(this.userdto)
-    // this.edituserservice.edituser(this.userdto, this.userId )
-    // .subscribe(
-    //   response => {
-    //     console.log(response)
-    //   }
-    // );
+    console.log(this.EdituserForm.value)
+    this.edituserservice.edituser(this.EdituserForm.value, this.userId )
+    .subscribe(
+      response => {
+        console.log(response)
+        this.router.navigate(['/profile'])
+      }
+    );
   }
 }

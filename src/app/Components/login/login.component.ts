@@ -48,11 +48,18 @@ export class LoginComponent implements OnInit {
           alert('Logged in Successfully')
           this.router.navigate(['/dealerhome'])
         }
+        else if(this.result.role == 'Admin'){
+          alert('Logged in Successfully')
+          this.router.navigate(['/adminhome'])
+        }
       },
       err=>{
         if(err.status==401){
           alert('Wrong Password')
-        }else if(err.status==404){
+        }else if(err.status==400){
+          alert('Inactive user login')
+        }
+        else if(err.status==404){
           alert('User not Found!! Register or check Email again')
         }
       });

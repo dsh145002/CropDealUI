@@ -14,8 +14,8 @@ export class UserPageService {
     return this.http.get<any[]>(this.baseurl+'api/User/getUsers');
   }
 
-  public changeUserStatus(userId:any,status:any){
-    return this.http.put(this.baseurl+'api/User/status/'+userId,status)
+  public changeUserStatus(userId:any,stat:string){
+    return this.http.put(this.baseurl+'api/User/status/'+userId+'?stat='+stat,null);
   }
 
 }

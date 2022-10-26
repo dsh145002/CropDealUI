@@ -1,9 +1,7 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { getAllCrop } from 'src/app/Model/getAllCrop.model';
 import { CropService } from 'src/app/crop.service';
-import {filter, map} from 'rxjs';
+
 
 @Component({
   selector: 'app-view-crop-farmer',
@@ -17,7 +15,7 @@ export class ViewCropFarmerComponent implements OnInit {
 
   selectedCropNumber: string="Top 10 Trending Crops!";
   
-  constructor(private observer : BreakpointObserver, private cd : ChangeDetectorRef, private cropService : CropService) {} 
+  constructor(private cd : ChangeDetectorRef, private cropService : CropService) {} 
 
   ngOnInit(): void {
     this.getAllCrops();
