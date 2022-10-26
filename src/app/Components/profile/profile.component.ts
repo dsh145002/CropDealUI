@@ -14,9 +14,9 @@ export class ProfileComponent implements OnInit {
   constructor(private router:Router,private http:HttpClient) {
     
   }
-
+  rating!:any
   city!:any
-
+  role = localStorage.getItem('role')
   ngOnInit(): void { 
     this.http.get('https://localhost:44346/api/User/getuser/'+localStorage.getItem('userId')).subscribe((res:any)=>{
        this.user.name = res.value.name
@@ -30,6 +30,12 @@ export class ProfileComponent implements OnInit {
        
      
     });
+
+    this.http.get('https://localhost:44346/api/User/getRating/'+localStorage.getItem('userId')).subscribe(
+      res=>{
+        this.rating = res
+      }
+    )
   }
   goHome(){this.router.navigate(['register']);}
   
