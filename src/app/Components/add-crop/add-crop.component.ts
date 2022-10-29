@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AddCropDto } from 'src/app/Model/crop.model';
 import { CropService } from 'src/app/crop.service';
 import { NgToastService } from 'ng-angular-popup'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-crop',
@@ -16,7 +17,7 @@ export class AddCropComponent implements OnInit {
 
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private api: CropService, private router: Router, private toast: NgToastService) { }
+  constructor(private formBuilder: FormBuilder,private http:HttpClient ,private api: CropService, private router: Router, private toast: NgToastService) { }
 
   crop:AddCropDto={
     CropType:'',
@@ -36,6 +37,16 @@ export class AddCropComponent implements OnInit {
       expectedPrice: ['', Validators.required]
     });
   }
+  selectedFile!:File
+  onFileSelected(event:any){
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload(){
+    const filedata = new FormData();
+    filedata.append('image',this.selectedFile,this.selectedFile.name);
+    console.log(filedata);
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -50,13 +61,22 @@ export class AddCropComponent implements OnInit {
     this.crop.CropExpectedPrice = this.addForm.controls['expectedPrice'].value;
     
     this.api.addCrop(this.crop)
-    .subscribe(response=>{
+    .subscribe((response:any)=>{
     console.log(response); 
+
+     const filedata = new FormData();
+     filedata.append('image',this.selectedFile,this.selectedFile.name);
+     this.http.put('https://localhost:44346/api/Crop/cropimg/'+response.value.cropId,filedata).subscribe(
+      (res:any)=>console.log(res),
+      err=>{
+        console.log(err)
+      }
+     )
+
     this.toast.success({detail: "Success Message", summary: "Crop added successfully", duration: 5000});
-    this.addForm.reset();
     this.router.navigate(['farmerhome'])
     }, error =>{
-      if(error.status==401){
+      if(error.status==401 || error.status==403){
         alert('Unauthorized')
       }
       console.log(error);
@@ -68,30 +88,6 @@ export class AddCropComponent implements OnInit {
 
 }
 
-//   onSubmit(){
-//     this.submitted = true;
-//     // if(this.addForm.invalid){
-//     //   console.log("Something went wrong");
-//     //   return ;
-//     // }
-//     // else{
-//       // this.addObj.CropType ="priya ji";// this.addForm.value.cropName;
-//       // this.addObj.CropName = "sarso";//this.addForm.controls['cropName'].value;
-//       // this.addObj.fid =1 ;//this.addForm.controls['farmerId'].value;
-//       // this.addObj.CropLocation ="rajastan";// this.addForm.controls['cropLocation'].value;
-//       // this.addObj.CropQtyAvailable = 50;//this.addForm.controls['qtyAvailable'].value;
-//       // this.addObj.CropExpectedPrice = 50;//this.addForm.controls['expectedPrice'].value;
-      
-//       this.api.createUser(this.addObj)
-//       .subscribe( data => {
-//         console.log(data);
-//         alert('Crop added!!');
-//         this.addForm.reset();
-//         this.router.navigate(['view-crop-farmer']);
-//       });
-//   //}
-      
-//   }
 
 
 

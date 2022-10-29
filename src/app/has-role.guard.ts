@@ -14,11 +14,13 @@ export class HasRoleGuard implements CanActivate{
         state: RouterStateSnapshot): 
         boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         
-        const isAuthorized =  localStorage.getItem('role') == route.data["role"]
+            const token =  localStorage.getItem('token')?.toString()!
+            const role = Object.values(JSON.parse(atob(token.split('.')[1]))).at(1)
+            const isAuthorized =  role == route.data["role"]
 
         if(!isAuthorized){
             window.alert('Unauthoirzed access!!!')
-            
+
         }
         return isAuthorized
     }

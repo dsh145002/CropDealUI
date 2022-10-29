@@ -4,6 +4,7 @@
       <mat-icon (click)="this.sideNav.close()" *ngIf="sideNav?.opened">close</mat-icon>
   </button>
     <span>Menu</span>
+    <!-- <input type="text" [(ngModel)]="searchText"> -->
 </mat-toolbar>
 
 
@@ -14,15 +15,19 @@
         <mat-divider></mat-divider>
 
         <ng-container>
-            <button  mat-button class="menu-button">
+            <button (click)="getAllCrops()" mat-button class="menu-button">
+                <mat-icon>event_note</mat-icon>
+                <span #id1>All Category</span>
+            </button>
+            <button (click)="filterByType(1)" mat-button class="menu-button">
                 <mat-icon>event_note</mat-icon>
                 <span #id1>Fruits</span>
             </button>
-            <button  mat-button class="menu-button">
+            <button (click)="filterByType(3)" mat-button class="menu-button">
                 <mat-icon>event_note</mat-icon>
                 <span #id1>Grains</span>
             </button>
-            <button  mat-button class="menu-button">
+            <button (click)="filterByType(2)" mat-button class="menu-button">
                 <mat-icon>event_note</mat-icon>
                 <span #id1>Vegetables</span>
             </button>
@@ -33,10 +38,11 @@
     
 
     <div class="row justify-content-center">
-        <ng-container *ngFor="let item of cropForm">
+        <ng-container *ngFor="let item of cropForm ">
          <div class="col-sm-4 ">
            <div class="card second" >
-            <img class="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-full object-cover object-center mb-6" src="./assets/images/tomato.jpg" alt="Image Size 720x400">
+            <img style="height:220px;width:auto" 
+            src="{{item.cropImage}}" alt="Image Size 720x400">
                                     
             <div class="card-body">
             <div class="flex justify-between ">

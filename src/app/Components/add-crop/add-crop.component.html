@@ -26,8 +26,16 @@
                           <div *ngIf="submitted && addForm.controls['cropName'].errors" class="error">
                             <div class="text-danger" *ngIf="addForm.controls['cropName'].errors['required']">*crop name is required</div>
                           </div>
-                        </div>                  
-                    
+                        </div>    
+                                     
+                        <div>
+                          <label >Crop Image</label><br>
+                          <input type="file" (change)="onFileSelected($event)">
+                          <input type="button" value="upload" (click)="onUpload()">
+                          <img src="https://localhost:44346/assets/football.jpg"><br>
+                        </div> 
+                        <br>
+
                         <div class="form-group mb-3">
                             <label class="form-label">Crop Location</label>
                             <input type="text" formControlName="cropLocation" class="form-control">
@@ -59,6 +67,7 @@
                           <!-- [routerLink]="['/view-crop-farmer']" -->
                       </div>                        
                     </form>
+                    
                 </div>
             </div>            
         </div>

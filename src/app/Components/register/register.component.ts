@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder ,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/Services/api.service';
 import { RegisterUser } from 'src/app/Model/RegisterUser';
 
 @Component({
@@ -21,26 +21,26 @@ export class RegisterComponent implements OnInit {
  
   constructor(private router:Router, private formBuilder:FormBuilder , public api:ApiService) { }
 
-  ngOnInit(): void {   this.profileForm = this.formBuilder.group({name:  ['', Validators.required],
+  ngOnInit(): void {   this.profileForm = this.formBuilder.group({
+    name:  ['', [Validators.required,Validators.pattern('^[A-Za-z]{3,}$')]],
     email:  ['', [Validators.required,Validators.email]],
     password:  ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
     phoneNo:  ['',  [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-    address:  [''],
-    city:  [''],
-    state:  [''],
-    accountNumber:  [''],
-    ifscCode:  [''],
-    bankName: [''],
-    userRole:['', Validators.required],
+    address:  ['',Validators.required],
+    city:  ['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
+    state:  ['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
+    accountNumber:  ['',[Validators.required,Validators.pattern('^[1-9]{1}[0-9]{8,17}$')]],
+    ifscCode:  ['',[Validators.required,Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]],
+    bankName: ['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
+    userRole:['', [Validators.required]],
  
   });
   }
 
-
-  
-  onSubmit(){this.submitted = true;
+  onSubmit():any{this.submitted = true;
+    console.log(this.profileForm.value)
     if(this.profileForm.invalid){
-      return;
+        return;
     }
     else{
       this.newUser.Name=this.profileForm.controls['name'].value;
@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
       this.newUser.IFSC =this.profileForm.controls['ifscCode'].value;
       this.newUser.BankName=this.profileForm.controls['bankName'].value;
       this.api.register(this.newUser).subscribe( res => {
+        alert('Registerd Successfully.')
       console.log(res)
     });
     
@@ -69,5 +70,7 @@ export class RegisterComponent implements OnInit {
     this.show_button = !this.show_button;
     this.show_eye = !this.show_eye;
 }
+
+
 
 }

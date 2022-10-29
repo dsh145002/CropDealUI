@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/Services/api.service';
 import { User } from 'src/app/Model/User';
 
 @Component({
@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
     userRole:['', Validators.required]
  
   });
+  
+
   }
   onSubmit(){this.submitted = true;
     if(this.loginForm.invalid){
@@ -40,15 +42,18 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role',this.result.role)
         localStorage.setItem('userId',this.result.userId)
         localStorage.setItem('token',this.result.token)
-        
-        if(this.result.role == 'Farmer'){
+        const token =  localStorage.getItem('token')?.toString()!
+        const role = (Object.values(JSON.parse(atob(token.split('.')[1]))).at(1))
+        if(role == 'Farmer'){
           alert('Logged in Successfully')
           this.router.navigate(['/farmerhome'])
-        }else if(this.result.role == 'Dealer'){
+          
+        }else if(role == 'Dealer'){
           alert('Logged in Successfully')
           this.router.navigate(['/dealerhome'])
+          
         }
-        else if(this.result.role == 'Admin'){
+        else if(role == 'Admin'){
           alert('Logged in Successfully')
           this.router.navigate(['/adminhome'])
         }

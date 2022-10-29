@@ -8,7 +8,7 @@ import {  HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { AddCropComponent } from './Components/add-crop/add-crop.component';
@@ -33,7 +33,8 @@ import { EditCropComponent } from './Components/edit-crop/edit-crop.component';
 import { ViewCropDealerComponent } from './Components/view-crop-dealer/view-crop-dealer.component';
 import { ReportPageComponent } from './Components/ReportPage/reportpage.component';
 import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-successfull.component';
-
+import { CropService } from './crop.service';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-suc
     EditCropComponent,
     ViewCropDealerComponent,
     ReportPageComponent,
-    PaymentSuccessfullComponent
+    PaymentSuccessfullComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,9 @@ import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-suc
     MatDividerModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,
@@ -76,7 +80,8 @@ import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-suc
     multi:true
   },
   AuthGuard,
-  HasRoleGuard
+  HasRoleGuard,
+  
 ],
   bootstrap: [AppComponent]
 })

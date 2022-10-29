@@ -26,6 +26,7 @@ export class ViewCropFarmerComponent implements OnInit {
     .subscribe(
       response =>{
         this.cropForm= response;
+        //console.log(this.cropForm)
         this.cropForm=this.cropForm.filter(res=>res.farmerId==Number(localStorage.getItem('userId')))
       }
     )
