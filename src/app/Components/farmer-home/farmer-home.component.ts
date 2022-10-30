@@ -10,7 +10,7 @@ export class FarmerHomeComponent implements OnInit {
   constructor() { }
   
   ngOnInit(): void {
-  
+   
   }
 
 }

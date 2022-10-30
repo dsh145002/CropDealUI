@@ -46,16 +46,26 @@ export class LoginComponent implements OnInit {
         const role = (Object.values(JSON.parse(atob(token.split('.')[1]))).at(1))
         if(role == 'Farmer'){
           alert('Logged in Successfully')
-          this.router.navigate(['/farmerhome'])
-          
+         
+          this.router.navigate(['/farmerhome']).then(() => {
+            window.location.reload();
+          });
+         
         }else if(role == 'Dealer'){
           alert('Logged in Successfully')
-          this.router.navigate(['/dealerhome'])
           
+          this.router.navigate(['/dealerhome']).then(() => {
+            window.location.reload();
+          });
+         
         }
         else if(role == 'Admin'){
           alert('Logged in Successfully')
-          this.router.navigate(['/adminhome'])
+          
+          this.router.navigate(['/adminhome']).then(() => {
+            window.location.reload();
+          });
+          
         }
       },
       err=>{

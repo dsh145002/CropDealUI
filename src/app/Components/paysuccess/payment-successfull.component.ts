@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup'
 
 @Component({
@@ -18,10 +18,13 @@ export class PaymentSuccessfullComponent implements OnInit {
     Review:''
   }
 
-  constructor(private formBuilder: FormBuilder,private http:HttpClient, private toast: NgToastService,private route:ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder,
+    private http:HttpClient, 
+    private toast: NgToastService,private route:ActivatedRoute, private router:Router) { }
   id:any
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id')
+    this.id = this.route.snapshot.paramMap.get('uid')
+    console.log(this.id)
     this.ngForm = this.formBuilder.group({
       totalRating: [''],
       Review: ['']
@@ -35,9 +38,10 @@ export class PaymentSuccessfullComponent implements OnInit {
     }
     this.farmer.TotalRating = this.ngForm.controls['totalRating'].value;
     this.farmer.Review = this.ngForm.controls['Review'].value;
-    this.http.post('https://localhost:44346/api/User/add-rating/'+1012,this.farmer).subscribe(
+    this.http.post('https://localhost:44346/api/User/add-rating/'+this.id,this.farmer).subscribe(
       res=>{
         console.log(res)
+        this.router.navigate(['/dealerhome'])
       }
     )
     this.toast.success({detail: "Success Message", summary: "You rated farmer successfully", duration: 5000});

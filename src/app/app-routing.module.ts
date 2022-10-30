@@ -14,6 +14,7 @@ import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-suc
 import { ProfileComponent } from './Components/profile/profile.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ReportPageComponent } from './Components/ReportPage/reportpage.component';
+import { SubscriptionComponent } from './Components/subscription/subscription.component';
 import { UserDisplayComponent } from './Components/Users Display/userDisplay.component';
 import { ViewCropDealerComponent } from './Components/view-crop-dealer/view-crop-dealer.component';
 import { ViewCropFarmerComponent } from './Components/view-crop-farmer/view-crop-farmer.component';
@@ -56,7 +57,10 @@ const routes: Routes = [
   {path:'crop-detail/:id',component:CropDetailsComponent,canActivate:[AuthGuard]},
   {path:'editProfile',component:EditUserComponent,canActivate:[AuthGuard]},
   
-  {path:'paysuccess',component:PaymentSuccessfullComponent}
+  {path:'paysuccess',component:PaymentSuccessfullComponent},
+  {path:'subs',component:SubscriptionComponent,canActivate:[AuthGuard,HasRoleGuard],data:{
+    role:'Dealer',
+  }},
   
 ];
 

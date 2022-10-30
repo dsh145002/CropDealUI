@@ -35,6 +35,7 @@ import { ReportPageComponent } from './Components/ReportPage/reportpage.componen
 import { PaymentSuccessfullComponent } from './Components/paysuccess/payment-successfull.component';
 import { CropService } from './crop.service';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { SubscriptionComponent } from './Components/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     ViewCropDealerComponent,
     ReportPageComponent,
     PaymentSuccessfullComponent,
+    SubscriptionComponent,
     
   ],
   imports: [

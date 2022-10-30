@@ -37,10 +37,10 @@ export class CropDetailsComponent implements OnInit {
     this.pay.farmerId= this.singleCrop.farmerId
     this.pay.dealerId= Number(localStorage.getItem('userId'))
     console.log(this.pay)
-    this.cropService.postInvoice(this.pay).subscribe(res=>{
+    this.cropService.postInvoice(this.pay).subscribe((res:any)=>{
       console.log(res)
       alert('Payment Successful')
-      this.router.navigate(['/paysuccess'])
+      this.router.navigate(['/paysuccess',{uid:res.farmerId}])
     },err=>{
       console.log(err)
     })

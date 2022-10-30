@@ -37,6 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav"  >
             <a *ngIf="role!='Admin'" routerLink="/profile" class="nav-link active" style="color:  #131313;" aria-current="page" href="#">Profile</a>
+            <a *ngIf="role=='Dealer'" routerLink="/subs" class="nav-link active" style="color:  #131313;" aria-current="page" href="subs">Subscription</a>
             <a (click)="onLogout()" class="nav-link" style="color:  #ff0000;" href="login">Logout</a>
           </div>
         </div>

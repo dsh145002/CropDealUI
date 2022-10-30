@@ -67,14 +67,15 @@ export class AddCropComponent implements OnInit {
      const filedata = new FormData();
      filedata.append('image',this.selectedFile,this.selectedFile.name);
      this.http.put('https://localhost:44346/api/Crop/cropimg/'+response.value.cropId,filedata).subscribe(
-      (res:any)=>console.log(res),
+      (res:any)=>{
+        console.log(res)
+        this.router.navigate(['farmerhome'])
+      },
       err=>{
         console.log(err)
       }
      )
-
-    this.toast.success({detail: "Success Message", summary: "Crop added successfully", duration: 5000});
-    this.router.navigate(['farmerhome'])
+    
     }, error =>{
       if(error.status==401 || error.status==403){
         alert('Unauthorized')
